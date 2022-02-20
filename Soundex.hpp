@@ -5,5 +5,8 @@
 class Soundex {
 public:
   std::string encode(const std::string &word);
+
+private:
+  std::string zeroPad(const std::string &word);
 };
 #endif
