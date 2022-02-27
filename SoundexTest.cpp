@@ -18,3 +18,13 @@ TEST_F(SoundexEncoding, PattedSoleLetterOfOneLetterWord) {
   EXPECT_EQ(soundex.encode("G"), "G000");
   EXPECT_EQ(soundex.encode("A"), "A000");
 }
+
+TEST_F(SoundexEncoding, PattedTwoLetterOfGroupOne) {
+  EXPECT_EQ(soundex.encode("Gb"), "G100");
+  EXPECT_EQ(soundex.encode("Ab"), "A100");
+}
+
+TEST_F(SoundexEncoding, PattedTwoLetterOfGroup2) {
+  EXPECT_EQ(soundex.encode("Gj"), "G200");
+  EXPECT_EQ(soundex.encode("Ac"), "A200");
+}
