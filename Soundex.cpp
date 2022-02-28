@@ -19,11 +19,39 @@ std::string Soundex::encodeDigits(const std::string &word) {
 }
 
 std::string Soundex::encodeDigit(char letter) {
-  std::string returnValue;
-  if ('c' == letter or 'j' == letter) {
-    returnValue = "2";
-  } else {
+  std::string returnValue = "";
+  switch (letter) {
+  case 'b':
+  case 'f':
+  case 'p':
+  case 'v':
     returnValue = "1";
+    break;
+  case 'c':
+  case 'j':
+  case 'k':
+  case 'q':
+  case 's':
+  case 'x':
+  case 'z':
+    returnValue = "2";
+    break;
+  case 'd':
+  case 't':
+    returnValue = "3";
+    break;
+  case 'l':
+    return "4";
+    break;
+  case 'm':
+  case 'n':
+    returnValue = "5";
+    break;
+  case 'r':
+    returnValue = "6";
+    break;
+  default:
+    break;
   }
 
   return returnValue;

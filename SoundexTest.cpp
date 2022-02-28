@@ -27,4 +27,13 @@ TEST_F(SoundexEncoding, PattedTwoLetterOfGroupOne) {
 TEST_F(SoundexEncoding, PattedTwoLetterOfGroup2) {
   EXPECT_EQ(soundex.encode("Gj"), "G200");
   EXPECT_EQ(soundex.encode("Ac"), "A200");
+  EXPECT_EQ(soundex.encode("Zl"), "Z400");
+  EXPECT_EQ(soundex.encode("pt"), "p300");
+  EXPECT_EQ(soundex.encode("tr"), "t600");
+  EXPECT_EQ(soundex.encode("Rm"), "R500");
+}
+
+TEST_F(SoundexEncoding, TotalWords) {
+  EXPECT_EQ(soundex.encode("Helpw"), "H410");
+  EXPECT_EQ(soundex.encode("tragisch"), "t622");
 }
