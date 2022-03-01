@@ -31,7 +31,8 @@ std::string Soundex::encodeDigits(const std::string &word) const {
 
 std::string Soundex::encodeDigit(char letter) const {
   std::string returnValue = "";
-  switch (letter) {
+  char testletter = tolower(letter);
+  switch (testletter) {
   case 'b':
   case 'f':
   case 'p':

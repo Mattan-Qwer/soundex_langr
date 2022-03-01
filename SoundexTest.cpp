@@ -57,3 +57,13 @@ TEST_F(SoundexEncoding, DoubleCodedLettersSeperatedByVocal) {
   EXPECT_EQ(soundex.encode("Alcajr"), "A422");
   EXPECT_EQ(soundex.encode("Zimanerplanze"), "Z556");
 }
+
+TEST_F(SoundexEncoding, DoNotCareAboutCapitalLetters) {
+  EXPECT_EQ(soundex.encode("AlCajR"), "A422");
+  EXPECT_EQ(soundex.encode("ZimaNerPlanze"), "Z556");
+}
+
+TEST_F(SoundexEncoding, UseNoneLetterChars) {
+  EXPECT_EQ(soundex.encode("AlC/jR"), "A422");
+  EXPECT_EQ(soundex.encode("Z#maNerPl#nze"), "Z556");
+}
