@@ -14,9 +14,13 @@ std::string Soundex::zeroPad(const std::string &word) const {
 
 std::string Soundex::encodeDigits(const std::string &word) const {
   std::string encodedDigits = "";
+  int shiftWH = 1;
   for (int i = 1; i < word.length(); i++) {
-    if (word[i] != word[i - 1]) {
+    if ('w' == word[i] or 'h' == word[i]) {
+      shiftWH++;
+    } else if (encodeDigit(word[i]) != encodeDigit(word[i - shiftWH])) {
       encodedDigits += encodeDigit(word[i]);
+      shiftWH = 1;
     }
     if (encodedDigits.length() >= MaxCodeLength - 1) {
       break;

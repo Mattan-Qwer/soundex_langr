@@ -35,10 +35,25 @@ TEST_F(SoundexEncoding, PattedTwoLetterOfGroup2) {
 
 TEST_F(SoundexEncoding, TotalWords) {
   EXPECT_EQ(soundex.encode("Helpw"), "H410");
-  EXPECT_EQ(soundex.encode("tragisch"), "t622");
+  EXPECT_EQ(soundex.encode("tragisch"), "t620");
 }
 
 TEST_F(SoundexEncoding, DoubleConsonats) {
   EXPECT_EQ(soundex.encode("Affen"), "A150");
   EXPECT_EQ(soundex.encode("Zimmerplanze"), "Z561");
+}
+
+TEST_F(SoundexEncoding, DoubleCodedLetters) {
+  EXPECT_EQ(soundex.encode("Alcjr"), "A426");
+  EXPECT_EQ(soundex.encode("Zimnerplanze"), "Z561");
+}
+
+TEST_F(SoundexEncoding, DoubleCodedLettersSeperatedBySilentLetter) {
+  EXPECT_EQ(soundex.encode("Alchjr"), "A426");
+  EXPECT_EQ(soundex.encode("Zimwnerplanze"), "Z561");
+}
+
+TEST_F(SoundexEncoding, DoubleCodedLettersSeperatedByVocal) {
+  EXPECT_EQ(soundex.encode("Alcajr"), "A422");
+  EXPECT_EQ(soundex.encode("Zimanerplanze"), "Z556");
 }
