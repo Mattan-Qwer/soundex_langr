@@ -37,3 +37,8 @@ TEST_F(SoundexEncoding, TotalWords) {
   EXPECT_EQ(soundex.encode("Helpw"), "H410");
   EXPECT_EQ(soundex.encode("tragisch"), "t622");
 }
+
+TEST_F(SoundexEncoding, DoubleConsonats) {
+  EXPECT_EQ(soundex.encode("Affen"), "A150");
+  EXPECT_EQ(soundex.encode("Zimmerplanze"), "Z561");
+}
