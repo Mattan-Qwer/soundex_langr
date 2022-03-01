@@ -1,24 +1,27 @@
 #include "Soundex.hpp"
-std::string Soundex::encode(const std::string &word) {
+std::string Soundex::encode(const std::string &word) const {
   return zeroPad(head(word) + encodeDigits(word));
 };
 
-std::string Soundex::head(const std::string &word) { return word.substr(0, 1); }
+std::string Soundex::head(const std::string &word) const {
+  return word.substr(0, 1);
+}
 
-std::string Soundex::zeroPad(const std::string &word) {
-  auto zeroNeeded = 4 - word.length();
+std::string Soundex::zeroPad(const std::string &word) const {
+  auto zeroNeeded = MaxCodeLength - word.length();
   return {word + std::string(zeroNeeded, '0')};
 }
 
-std::string Soundex::encodeDigits(const std::string &word) {
+std::string Soundex::encodeDigits(const std::string &word) const {
   std::string encodedDigits = "";
-  if (word.length() > 1) {
-    encodedDigits = encodeDigit(word[1]);
+  for (int i = 1;
+       i < word.length() and encodedDigits.length() < MaxCodeLength - 1; i++) {
+    encodedDigits += encodeDigit(word[i]);
   }
   return encodedDigits;
 }
 
-std::string Soundex::encodeDigit(char letter) {
+std::string Soundex::encodeDigit(char letter) const {
   std::string returnValue = "";
   switch (letter) {
   case 'b':
